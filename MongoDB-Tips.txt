@@ -1,0 +1,67 @@
+How to start mongodb in Ubuntu?
+sudo service mongodb start
+
+How to create a database?
+use Tweet
+
+How to import BSON dump files?
+mongorestore -d Tweet /home/secelf/Desktop/Github/MongoDB/twitter/tweets.bson
+
+How to query a collection?
+use Tweet
+db.tweets.find({retweet_count:26})
+
+How to use comparisions?
+use Tweet
+db.tweets.find({retweet_count:{$gt : 1000}})
+db.tweets.find({retweet_count:{$lt : 1000}})
+db.tweets.find({retweet_count:{$eq : 1000}})
+
+How to use CRUD operations?
+use Tweet
+db.tweets.insertOne({retweet_count:100000})
+db.tweets.update({retweet_count:100000},{$set:{retweet:9999}})
+db.tweets.remove({retweet:9999})
+
+How to watch query plans?
+use Tweet
+db.tweets.find().explain()
+db.tweets.find().explain("executionStats")
+db.tweets.find().explain("queryPlanner")
+db.tweets.find().explain("allPlansExecution")
+
+How to see all indexes and create indexes?
+use Tweet
+db.tweets.getIndexes()
+db.tweets.createIndex({retweet_count:1})
+
+How to query distinct values?
+use Tweet
+db.tweets.distinct("lang")
+
+How to query count?
+use Tweet
+db.tweets.count()
+db.tweets.find({retweet_count:26}).count()
+
+How to sort values according to a specific column?
+use Tweet
+db.tweets.find().sort({retweet_count:1})
+
+How to get user list?
+use Tweet
+db.getUsers()
+
+How to use regular expressions?
+use Tweet
+db.tweets.find({lang:{$regex:"en"}})
+db.tweets.find({lang:{$regex:/^en/}})
+
+How to limit select queries?
+use Tweet
+db.tweets.find({retweet_count:26}).limit(1)
+
+How to include and exclude columns in select query?
+use Tweet
+db.tweets.find({retweet_count:26},{id_:1, retweet_count:1})
+
