@@ -65,3 +65,5 @@ How to include and exclude columns in select query?
 use Tweet
 db.tweets.find({retweet_count:26},{id_:1, retweet_count:1})
 
+How to use aggregations?
+db.tweets.aggregate([{$group : {_id : "$lang", Count : {$sum: 1}, Sum_Retweet : {$sum: "$retweet_count"}}}])
